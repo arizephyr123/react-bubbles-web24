@@ -1,6 +1,7 @@
 import React from "react";
+import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ component = component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -8,7 +9,7 @@ const PrivateRoute = ({ component = component, ...rest }) => {
         if (localStorage.getItem("token")) {
           return <Component rest={rest} />;
         } else {
-          <Redirect to="/" />;
+          return <Redirect to="/" />;
         }
       }}
     />
